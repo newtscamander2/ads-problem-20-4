@@ -48,34 +48,44 @@
 \section*{Comment}
 
 \section*{Our solution}
-Let $G=(E,V)$ be a directed graph with each vertex $v \in V$ labelled with a unique integer $L(u)$ from the set $\{1, 2, \hdots, |V| \}$. For each vertex $u \in V$ we let $R(u) = \{ v \in V : u \rightsquigarrow v\}$ be the set of verticies that are reachable from $u$. We let $min(u)$ be the vertex in $R(u)$ whose label is minimum such that: $min(u)$ is the vertex $v$ such that $L(v) = min\{L(w): w \in R(u) \}$. We wish to find an $O(V+E)$ algorithm to compute $min(u)$ for all verticies $u \in V$.
+Let $G=(E,V)$ be a directed graph with each vertex $v \in V$ labelled with a unique integer $L(u)$ from the set $\{1, 2, \hdots, |V| \}$. For each vertex $u \in V$ we let $R(u) = \{ v \in V : u \rightsquigarrow v\}$ be the set of verticies that are reachable from $u$. We let $min(u)$ be the vertex in $R(u)$ whose label is minimum such that: $min(u)$ is the vertex $v$ such that $L(v) = min\{L(w): w \in R(u) \}$. We wish to find an $O(V+E)$ algorithm to compute $min(u)$ for all verticies $u \in V$. Consider the example in Figure \ref{fig:graph}: calling min(4) is supposed to give 1 since 1 is the smallest value node 4 can reach.
 
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
+		\node[main] (1)  {$1$};
+		\node[main] (2) [right of=1] {$2$};
+		\node[main] (3) [below of=1] {$3$};
+		\node[main] (4) [below of=2] {$4$};
 
+		\draw[->] (1) -- (2);
+		\draw[->] (1) -- (3);
+		\draw[->] (1) -- (4);
+		\draw[->] (2) -- (3);
+		\draw[->]  (3) to [out=135,in=180,looseness=5] (3);
+		\draw[->] (4) -- (2);
+		\draw[->] (4) -- (1);
+	\end{tikzpicture}
+	\caption{Example of $G(E, V)$. MIN(1)=1, MIN(2)=2, MIN(3)=3 and MIN(4)=1.}
+	\label{fig:graph}
+\end{figure}
 
-
-\begin{tikzpicture}[node distance={25mm}, thick, main/.style = {draw, circle}]
-	\node[main] (1)  {$1$};
-	\node[main] (2) [right of=1] {$2$};
-	\node[main] (3) [below of=1] {$3$};
-	\node[main] (4) [below of=2] {$4$};
-
-	\draw[->] (1) -- (2);
-	\draw[->] (1) -- (3);
-	\draw[->] (1) -- (4);
-
-	\draw[->] (2) -- (3);
-
-	\draw[->]  (3) to [out=135,in=180,looseness=5] (3);
-
-	\draw[->] (4) -- (2);
-	\draw[->] (4) -- (1);
-
-\end{tikzpicture}
 
 
 \begin{center}
-	\begin{minipage}{6.8cm}
+	\begin{minipage}{8cm}
 		\begin{algorithmic}
+
+			%\State{\textbf{class} Node} \\
+			%Initialize children, parents, uniqueInteger, minValue \\
+			%color = "white"
+			%\vspace{3mm}
+			%\State{Node(uniqueInteger)} \\
+			%\hspace{5mm} State{this.uniqueInteger}
+			%\hspace{5mm}\State{this.children}
+			%\hspace{5mm}\State{this.parents}
+
+
 			\Procedure{dfs}{G}
 			\State byLabel = new Node[G.length]
 			\For{u \textbf{in} G}
