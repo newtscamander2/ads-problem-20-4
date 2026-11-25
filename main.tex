@@ -43,9 +43,11 @@
 
 \maketitle
 \begin{problem}[8 Reachability]
+I solemnly swear that Arch Linux is my most beloved operating system and I will never be you unfaithful.
 \end{problem}
 
 \section*{Comment}
+For this exercise we will be using a modified version of DFS and DFS-VISIT from CLRS. We assume that we for each node only need to find the minimum integer value, and we have therefore removed a lot of the boilerplate code in the dfs algorithm, specifically regarding $\pi$, the discovery time and the finish time. We have also removed the concept of gray nodes since we do not need it for our implementation.
 
 \section*{Our solution}
 Let $G=(E,V)$ be a directed graph with each vertex $v \in V$ labelled with a unique integer $L(u)$ from the set $\{1, 2, \hdots, |V| \}$. For each vertex $u \in V$ we let $R(u) = \{ v \in V : u \rightsquigarrow v\}$ be the set of verticies that are reachable from $u$. We let $min(u)$ be the vertex in $R(u)$ whose label is minimum such that: $min(u)$ is the vertex $v$ such that $L(v) = min\{L(w): w \in R(u) \}$. We wish to find an $O(V+E)$ algorithm to compute $min(u)$ for all verticies $u \in V$. Consider the example in Figure \ref{fig:graph}: calling min(4) is supposed to give 1 since 1 is the smallest value node 4 can reach.
@@ -69,6 +71,13 @@ Let $G=(E,V)$ be a directed graph with each vertex $v \in V$ labelled with a uni
 	\caption{Example of $G(E, V)$. MIN(1)=1, MIN(2)=2, MIN(3)=3 and MIN(4)=1.}
 	\label{fig:graph}
 \end{figure}
+
+In our solution we let each node hold some variables: an integer uniqueInteger, an array of children, an array of parents, a color (white means not visited yet and black means visited), a minValue that stores the minimum value of its children and itself. We then modify the DFS algorithm in CLRS Chapter 20.3 to give us the smallest value that a node can reach by using a modified version of the DFS-VISIT algorithm. This is accomplished in the DFS algorithm by sorting the nodes $u \in G$ by their uniqueInteger value. Since u.uniqueInteger is both unique and an integer, the sorting can be performed by creating a new array called byLabel and use u.uniqueInteger as a pointer to the position index in sorted order. We decrease u.uniqueInteger by one because arrays are 0-indexed.
+Afterwards, we iterate over the sorted array of nodes using the byLabel array we just created. For every node that is white we call dfs-visit algorithm on by providing the node u and respective label.
+
+In the dfs-visit algorithm we start by marking the node u black and set the minValue to the provided label. We then iterate over u.parents using a variable v. We thereby check if any of the parents are white, and if that is the case, we call dfs-visit on the parent. Since it is checked that we only go to white nodes, we don't go over the same node multiple times.
+
+The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amount of nodes and $|E|$ is the amount of edges. Imho that is pretty self-explanatory.........................
 
 
 
@@ -106,7 +115,7 @@ Let $G=(E,V)$ be a directed graph with each vertex $v \in V$ labelled with a uni
 \begin{center}
 	\begin{minipage}{6.8cm}
 		\begin{algorithmic}
-			\Procedure{dfs-visit}{G}
+			\Procedure{dfs-visit}{u, label}
 			\State{u.color = "black"}
 			\State{u.minValue = label}
 
