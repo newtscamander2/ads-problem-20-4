@@ -90,9 +90,7 @@ The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amou
 			\EndFor
 
 			\For{u \textbf{in} byLabel}
-			\If{u.color == "white"}
-			\State{dfs-visit(u, u.uniqueInteger)}
-			\EndIf
+			\State{dfs-visit(u)}
 			\EndFor
 			\EndProcedure
 		\end{algorithmic}
@@ -101,21 +99,20 @@ The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amou
 
 
 \begin{center}
-	\begin{minipage}{6.8cm}
+	\begin{minipage}{8cm}
 		\begin{algorithmic}
-			\Procedure{dfs-visit}{u, label}
+			\Procedure{dfs-visit}{u}
 			\State{u.color = "black"}
-			\State{u.minValue = label}
 
 			\For{v \textbf{in} u.parents}
+			\State{u.minValue = min(u.label, v.label)}
 			\If{v.color == "white" }
-			\State{dfs-visit(v, label)}
+			\State{dfs-visit(v)}
 			\EndIf
 			\EndFor{}
 			\EndProcedure
 		\end{algorithmic}
 	\end{minipage}
 \end{center}
-
 
 \end{document}
