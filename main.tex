@@ -77,9 +77,7 @@ Afterwards, we iterate over the sorted array of nodes using the byLabel array we
 
 In the dfs-visit algorithm we start by marking the node u black and set the minValue to the provided label. We then iterate over u.parents using a variable v. We thereby check if any of the parents are white, and if that is the case, we call dfs-visit on the parent. Since it is checked that we only go to white nodes, we don't go over the same node multiple times.
 
-The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amount of nodes and $|E|$ is the amount of edges. Imho that is pretty self-explanatory.........................
-
-
+The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amount of nodes and $|E|$ is the amount of edges.
 
 \begin{center}
 	\begin{minipage}{8cm}
