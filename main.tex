@@ -105,7 +105,7 @@ The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amou
 			\State{u.color = "black"}
 
 			\For{v \textbf{in} u.parents}
-			\State{u.minValue = min(u.label, v.label)}
+			\State{u.minValue = min(u.minValue, v.minValue)}
 			\If{v.color == "white" }
 			\State{dfs-visit(v)}
 			\EndIf
