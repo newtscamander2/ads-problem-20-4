@@ -1,27 +1,11 @@
-/*public ArrayList<Integer> getIntegersOfChildrenSorted() {
-  ArrayList<Integer> integers = new ArrayList<>();
-  for (Node child : this.children) {
-    integers.add(child.getUniqueInteger());
-  }
-
-  Collections.sort(integers);
-  return integers;
-}*/
-
 import java.util.ArrayList;
-
-// import java.util.Collections;
-// import java.util.List;
 
 class Node {
   public ArrayList<Node> children;
   public ArrayList<Node> parents;
 
   public int uniqueInteger;
-  // public Node pi;
   public String color = "white";
-  // public int d;
-  // public int f;
   public int minValue;
 
   Node(int uniqueInteger) {
@@ -34,14 +18,9 @@ class Node {
     this.children.add(child);
     child.parents.add(this);
   }
-
-  // public int getUniqueInteger() {
-  //  return this.uniqueInteger;
-  // }
 }
 
 public class Reachability {
-  // public static int time = 0;
 
   public static void dfs(Node[] G) {
     Node[] byLabel = new Node[G.length];
