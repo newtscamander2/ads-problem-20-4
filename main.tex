@@ -117,12 +117,20 @@ The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amou
 function Dfs(G)
 	Vertices = {}
 	for u in G do
-		Vertices[u.Label] = u
-	end
+		Vertices[u.Label-1] = u
 
-	//Go through nodes and set their parent
+		//Add as parent to all reachable nodes
+		for n in R(u) do
+			n.Parent.add(u)
+		end
+	end //O(V+E)
+	
 	
 end
+\end{pseudo}
+
+\begin{pseudo}
+
 \end{pseudo}
 
 \end{document}
