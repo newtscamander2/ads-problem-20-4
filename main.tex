@@ -15,8 +15,7 @@
 \usepackage{amssymb}
 \usepackage{subfiles}
 \usepackage{xcolor}
-
-\newcommand{\method}[1]{\textsc{#1}}
+\usepackage{latex-pro-code2}
 
 \geometry{left=3cm, right=6cm, top=3cm, bottom=3cm, marginparwidth=4cm} 
 
@@ -113,5 +112,17 @@ The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amou
 		\end{algorithmic}
 	\end{minipage}
 \end{center}
+
+\begin{pseudo}
+function Dfs(G)
+	Vertices = {}
+	for u in G do
+		Vertices[u.Label] = u
+	end
+
+	//Go through nodes and set their parent
+	
+end
+\end{pseudo}
 
 \end{document}
