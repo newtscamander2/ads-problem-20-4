@@ -77,42 +77,6 @@ In the dfs-visit algorithm we start by marking the node u black and set the minV
 
 The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amount of nodes and $|E|$ is the amount of edges.
 
-\begin{center}
-	\begin{minipage}{8cm}
-		\begin{algorithmic}
-
-			\Procedure{dfs}{G}
-			\State byLabel = new Node[G.length]
-			\For{u \textbf{in} G}
-			\State byLabel[u.uniqueInteger - 1] = u
-			\EndFor
-
-			\For{u \textbf{in} byLabel}
-			\State{dfs-visit(u)}
-			\EndFor
-			\EndProcedure
-		\end{algorithmic}
-	\end{minipage}
-\end{center}
-
-
-\begin{center}
-	\begin{minipage}{8cm}
-		\begin{algorithmic}
-			\Procedure{dfs-visit}{u}
-			\State{u.color = "black"}
-
-			\For{v \textbf{in} u.parents}
-			\State{u.minValue = min(u.minValue, v.minValue)}
-			\If{v.color == "white" }
-			\State{dfs-visit(v)}
-			\EndIf
-			\EndFor{}
-			\EndProcedure
-		\end{algorithmic}
-	\end{minipage}
-\end{center}
-
 \begin{pseudo}
 function Dfs(G)
 	Vertices = {}
