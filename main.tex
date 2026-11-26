@@ -75,8 +75,6 @@ Afterwards, we iterate over the sorted array of nodes using the byLabel array we
 
 In the dfs-visit algorithm we start by marking the node u black and set the minValue to the provided label. We then iterate over u.parents using a variable v. We thereby check if any of the parents are white, and if that is the case, we call dfs-visit on the parent. Since it is checked that we only go to white nodes, we don't go over the same node multiple times.
 
-The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amount of nodes and $|E|$ is the amount of edges.
-
 \begin{pseudo}
 function Dfs(G)
 	Vertices = {}
@@ -84,7 +82,7 @@ function Dfs(G)
 		Vertices[L(u)-1] = u
 
 		//Add as parent to all reachable nodes
-		for v in R(u) do
+		for v in u.Children do
 			v.Parents.add(u)
 		end
 	end //O(V+E)
@@ -107,5 +105,11 @@ function Dfs-Visit(u, label)
 	end
 end
 \end{pseudo}
+
+The algorithm consists of two parts:
+
+Part 1 is retrieving the parents for each node. Here we go over each node. The number of nodes in our graph is given as $|V|$. We go over all from each node given as $|E|$. This gives the first part a running-time of $\Theta(V+E)$.
+
+Part 2 is the DFS function. Here we again go over each node. This time we go over 
 
 \end{document}
