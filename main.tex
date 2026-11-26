@@ -81,7 +81,7 @@ The running time of the algorithm is $\Theta(|V| + |E|)$ where $|V|$ is the amou
 function Dfs(G)
 	Vertices = {}
 	for u in G do
-		Vertices[u.Label-1] = u
+		Vertices[L(u)-1] = u
 
 		//Add as parent to all reachable nodes
 		for v in R(u) do
@@ -90,16 +90,17 @@ function Dfs(G)
 	end //O(V+E)
 	
 	for u in Vertices do
-		Dfs-Visit(u, label)
+		Dfs-Visit(u, L(u))
 	end
 end
 \end{pseudo}
 
 \begin{pseudo}
-function Dfs-Visit(u, u.Label)
+function Dfs-Visit(u, label)
 	u.Color = black
+	u.minValue = label
+
 	for v in u.Parents do
-		u.minValue = label
 		if v.Color == white then
 			Dfs-Visit(v, label)
 		end
