@@ -110,6 +110,8 @@ The algorithm consists of two parts:
 
 Part 1 is retrieving the parents for each node. Here we go over each node. The number of nodes in our graph is given as $|V|$. We go over all from each node given as $|E|$. This gives the first part a running-time of $\Theta(V+E)$.
 
-Part 2 is the DFS function. Here we again go over each node. This time we go over 
+Part 2 is the DFS function. Here we again go over each node. This time we go over all the parents we set in part 1. Going over each node and their parents gives the same $\Theta(V+E)$ running-time.
+
+When these two parts are combined we end up with the running-time $\Theta(V+E) + \Theta(V+E) = \Theta(2(V+E)) = \Theta(V+E)$
 
 \end{document}
