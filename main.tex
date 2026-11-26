@@ -98,7 +98,7 @@ end
 \begin{pseudo}
 function Dfs-Visit(u, label)
 	u.Color = black
-	u.minValue = label
+	u.MinValue = label
 
 	for v in u.Parents do
 		if v.Color == white then
