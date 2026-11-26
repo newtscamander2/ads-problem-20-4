@@ -83,17 +83,10 @@ In the dfs-visit algorithm we start by marking the node u black and set the minV
 	for u in G do
 	Vertices[L(u)-1] = u
 
-<<<<<<< Updated upstream
 		//Add as parent to all reachable nodes
 		for v in u.Children do
 			v.Parents.add(u)
 		end
-=======
-	//Add as parent to all reachable nodes
-	for v in R(u) do
-	v.Parents.add(u)
-	end
->>>>>>> Stashed changes
 	end //O(V+E)
 
 	for u in Vertices do
