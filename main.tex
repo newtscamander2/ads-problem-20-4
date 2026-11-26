@@ -120,17 +120,27 @@ function Dfs(G)
 		Vertices[u.Label-1] = u
 
 		//Add as parent to all reachable nodes
-		for n in R(u) do
-			n.Parent.add(u)
+		for v in R(u) do
+			v.Parents.add(u)
 		end
 	end //O(V+E)
 	
-	
+	for u in Vertices do
+		Dfs-Visit(u)
+	end
 end
 \end{pseudo}
 
 \begin{pseudo}
-
+function Dfs-Visit(u)
+	u.Color = black
+	for v in u.Parents do
+		u.minValue = min(u.Label, v.minValue)
+		if v.Color == white then
+			Dfs-Visit(v)
+		end
+	end
+end
 \end{pseudo}
 
 \end{document}
