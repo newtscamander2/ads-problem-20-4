@@ -70,40 +70,49 @@ Let $G=(E,V)$ be a directed graph with each vertex $v \in V$ labelled with a uni
 	\label{fig:graph}
 \end{figure}
 
-In our solution we let each node hold some variables: an integer uniqueInteger, an array of children, an array of parents, a color (white means not visited yet and black means visited), a minValue that stores the minimum value of its children and itself. We then modify the DFS algorithm in CLRS Chapter 20.3 to give us the smallest value that a node can reach by using a modified version of the DFS-VISIT algorithm. This is accomplished in the DFS algorithm by sorting the nodes $u \in G$ by their uniqueInteger value. Since u.uniqueInteger is both unique and an integer, the sorting can be performed by creating a new array called byLabel and use u.uniqueInteger as a pointer to the position index in sorted order. We decrease u.uniqueInteger by one because arrays are 0-indexed.
+In our solution we let each node hold some variables: an integer uniqueInteger, an array of children, an array of parents, a color (white means not visited yet and black means visited), a minValue that stores the minimum value of its children and itself.
+Since given by the exercise is the function $L(u)$ we let $L(u)$ be a pointer to the unique integer. Furthermore, we let
+We then modify the DFS algorithm in CLRS Chapter 20.3 to give us the smallest value that a node can reach by using a modified version of the DFS-VISIT algorithm. This is accomplished in the DFS algorithm by sorting the nodes $u \in G$ by their uniqueInteger value. Since u.uniqueInteger is both unique and an integer, the sorting can be performed by creating a new array called byLabel and use u.uniqueInteger as a pointer to the position index in sorted order. We decrease u.uniqueInteger by one because arrays are 0-indexed.
 Afterwards, we iterate over the sorted array of nodes using the byLabel array we just created. For every node that is white we call dfs-visit algorithm on by providing the node u and respective label.
 
 In the dfs-visit algorithm we start by marking the node u black and set the minValue to the provided label. We then iterate over u.parents using a variable v. We thereby check if any of the parents are white, and if that is the case, we call dfs-visit on the parent. Since it is checked that we only go to white nodes, we don't go over the same node multiple times.
 
 \begin{pseudo}
-function Dfs(G)
+	function Dfs(G)
 	Vertices = {}
 	for u in G do
-		Vertices[L(u)-1] = u
+	Vertices[L(u)-1] = u
 
+<<<<<<< Updated upstream
 		//Add as parent to all reachable nodes
 		for v in u.Children do
 			v.Parents.add(u)
 		end
-	end //O(V+E)
-	
-	for u in Vertices do
-		Dfs-Visit(u, L(u))
+=======
+	//Add as parent to all reachable nodes
+	for v in R(u) do
+	v.Parents.add(u)
 	end
-end
+>>>>>>> Stashed changes
+	end //O(V+E)
+
+	for u in Vertices do
+	Dfs-Visit(u, L(u))
+	end
+	end
 \end{pseudo}
 
 \begin{pseudo}
-function Dfs-Visit(u, label)
+	function Dfs-Visit(u, label)
 	u.Color = black
 	u.MinValue = label
 
 	for v in u.Parents do
-		if v.Color == white then
-			Dfs-Visit(v, label)
-		end
+	if v.Color == white then
+	Dfs-Visit(v, label)
 	end
-end
+	end
+	end
 \end{pseudo}
 
 The algorithm consists of two parts:
