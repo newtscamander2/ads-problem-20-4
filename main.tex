@@ -90,18 +90,18 @@ function Dfs(G)
 	end //O(V+E)
 	
 	for u in Vertices do
-		Dfs-Visit(u)
+		Dfs-Visit(u, label)
 	end
 end
 \end{pseudo}
 
 \begin{pseudo}
-function Dfs-Visit(u)
+function Dfs-Visit(u, u.Label)
 	u.Color = black
 	for v in u.Parents do
-		u.minValue = min(u.Label, v.minValue)
+		u.minValue = label
 		if v.Color == white then
-			Dfs-Visit(v)
+			Dfs-Visit(v, label)
 		end
 	end
 end
